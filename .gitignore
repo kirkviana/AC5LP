@@ -13,13 +13,13 @@ class Disciplina:
         '''
         Acessor do atributo nome
         '''
-        pass
+        return self._nome
 
     def get_carga_horaria(self) -> int:
         '''
         Acessor do atributo cargar horaria
         '''
-        pass
+        return self._carga_horaria
 
 
 class Pessoa:
@@ -34,26 +34,29 @@ class Pessoa:
         '''
         Acessor do atributo Nome
         '''
-        pass
+        return self._nome
 
     def get_telefone(self) -> int:
         '''
         Acessor do atributo telefone
         '''
-        pass
+        return self._telefone
 
     def set_telefone(self, novo_telefone: int) -> None:
         '''
         Mutador do atributo telefone deve checar se é um número inteiro e,
         caso contrário devolver um TypeError
         '''
-        pass
+        if type(novo_telefone)!=int and novo_telefone < 0:
+            TypeError
+        self._telefone = novo_telefone
+
 
     def get_email(self) -> str:
         '''
         Acessor do atributo email
         '''
-        pass
+        return self._email
 
     def set_email(self, novo_email) -> None:
         '''
@@ -61,8 +64,10 @@ class Pessoa:
         (se possuir o caractere '@') e caso contrário devolver
         um ValueError
         '''
-        pass
-
+        if novo_email.find('@'):
+            self._email = novo_email
+        else:
+            ValueError
 
 class Aluno(Pessoa):
 
@@ -74,7 +79,7 @@ class Aluno(Pessoa):
         '''
         Acessor do atributo matricula
         '''
-        pass
+        return self._matricula
 
     def matricular(self, disciplina: Disciplina) -> None:
         '''
