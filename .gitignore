@@ -1,104 +1,112 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+__alunos__ = ['gabriel.miranda@aluno.faculdadeimpacta.com.br',
+              'bruno.viana@aluno.faculdadeimpacta.com.br']
 
-# C extensions
-*.so
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+class Disciplina:
+    '''
+    Abstração de uma disciplinai, possui os atributos Nome e carga Horária
+    '''
+    def __init__(self, nome: str, carga_horaria: int) -> None:
+        pass
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+    def get_nome(self) -> str:
+        '''
+        Acessor do atributo nome
+        '''
+        pass
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+    def get_carga_horaria(self) -> int:
+        '''
+        Acessor do atributo cargar horaria
+        '''
+        pass
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
 
-# Translations
-*.mo
-*.pot
+class Pessoa:
+    '''
+    Abstração de uma pessoa no Modelo, classe base para Aluno e Professor
+    que contém dados pertencentes a ambos.
+    '''
+    def __init__(self, nome: str, telefone: int, email: float) -> None:
+        pass
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
+    def get_nome(self) -> str:
+        '''
+        Acessor do atributo Nome
+        '''
+        pass
 
-# Flask stuff:
-instance/
-.webassets-cache
+    def get_telefone(self) -> int:
+        '''
+        Acessor do atributo telefone
+        '''
+        pass
 
-# Scrapy stuff:
-.scrapy
+    def set_telefone(self, novo_telefone: int) -> None:
+        '''
+        Mutador do atributo telefone deve checar se é um número inteiro e,
+        caso contrário devolver um TypeError
+        '''
+        pass
 
-# Sphinx documentation
-docs/_build/
+    def get_email(self) -> str:
+        '''
+        Acessor do atributo email
+        '''
+        pass
 
-# PyBuilder
-target/
+    def set_email(self, novo_email) -> None:
+        '''
+        Mutador do atributo eail, deve checar se éum email válido
+        (se possuir o caractere '@') e caso contrário devolver
+        um ValueError
+        '''
+        pass
 
-# Jupyter Notebook
-.ipynb_checkpoints
 
-# pyenv
-.python-version
+class Aluno(Pessoa):
 
-# celery beat schedule file
-celerybeat-schedule
+    def __init__(self, nome: str, telefone: int,
+                 email: str, n_matricula: int) -> None:
+        pass
 
-# SageMath parsed files
-*.sage.py
+    def get_matricula(self) -> int:
+        '''
+        Acessor do atributo matricula
+        '''
+        pass
 
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+    def matricular(self, disciplina: Disciplina) -> None:
+        '''
+        Realiza matrícula do Aluno na disciplina
+        '''
+        pass
 
-# Spyder project settings
-.spyderproject
-.spyproject
+    def lista_disciplinas(self) -> list:
+        '''
+        Devolve a lista de disciplinas em que o aluno esta matriculado
+        '''
+        pass
 
-# Rope project settings
-.ropeproject
 
-# mkdocs documentation
-/site
+class Professor(Pessoa):
+    '''
+    Entidade professor do Modelo
+    '''
+    def __init__(self, nome, telefone, email):
+        pass
 
-# mypy
-.mypy_cache/
+    def ministra(self, disciplina: Disciplina) -> None:
+        '''
+        Atribui o professor como ministrante da disiciplina
+        Um professor não pode dar mais de 200 horas de aula,
+        Caso um professor tente atribuir mais de 200h devolve
+        ValueError
+        '''
+        pass
+
+    def lista_disciplinas(self) -> list:
+        '''
+        lista as disciplinas ministradas pelo professor
+        '''
+        pass
