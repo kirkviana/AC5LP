@@ -1,0 +1,23 @@
+class Aluno(Pessoa):
+
+    def __init__(self, nome: str, telefone: int,
+                 email: str, n_matricula: int) -> None:
+        self._disciplina = []
+
+    def get_matricula(self) -> int:
+        '''
+        Acessor do atributo matricula
+        '''
+        return self._matricula
+
+    def matricular(self, disciplina: Disciplina) -> None:
+        '''
+        Realiza matrícula do Aluno na disciplina
+        '''
+        self._disciplina.append(disciplina)
+
+    def lista_disciplinas(self) -> list:
+        '''
+        Devolve a lista de disciplinas em que o aluno esta matriculado
+        '''
+        return self._disciplina
