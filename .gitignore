@@ -51,7 +51,7 @@ class Pessoa:
         caso contrário devolver um TypeError
         '''
         if type(novo_telefone) != int and novo_telefone < 0:
-            TypeError
+            raise TypeError
         self._telefone = novo_telefone
 
     def get_email(self) -> str:
@@ -66,38 +66,37 @@ class Pessoa:
         (se possuir o caractere '@') e caso contrário devolver
         um ValueError
         '''
-        if novo_email.find('@'):
+        if novo_email.find('@') != -1:
             self._email = novo_email
         else:
-            ValueError
+            raise ValueError
 
 
 class Aluno(Pessoa):
 
     def __init__(self, nome: str, telefone: int,
                  email: str, n_matricula: int) -> None:
-        self._nome = nome
-        self._telefone = telefone
-        self._email = email
+        super().__init__(nome, telefone, email)
         self._n_matricula = n_matricula
+        self._disciplina = []
 
     def get_matricula(self) -> int:
         '''
         Acessor do atributo matricula
         '''
-        return self._matricula
+        return self._n_matricula
 
     def matricular(self, disciplina: Disciplina) -> None:
         '''
         Realiza matrícula do Aluno na disciplina
         '''
-        pass
+        self._disciplina.append(disciplina)
 
     def lista_disciplinas(self) -> list:
         '''
         Devolve a lista de disciplinas em que o aluno esta matriculado
         '''
-        pass
+        return self._disciplina
 
 
 class Professor(Pessoa):
@@ -105,9 +104,10 @@ class Professor(Pessoa):
     Entidade professor do Modelo
     '''
     def __init__(self, nome, telefone, email):
-        self._nome = nome
-        self._telefone = telefone
-        self._email = email
+
+        super().__init__(nome, telefone, email)
+        self._disciplina = []
+        self._carga_horaria = 0
 
     def ministra(self, disciplina: Disciplina) -> None:
         '''
@@ -116,11 +116,13 @@ class Professor(Pessoa):
         Caso um professor tente atribuir mais de 200h devolve
         ValueError
         '''
-        if disciplina + disciplina > 200:
-            return ValueError
+        if self._carga_horaria + disciplina.get_carga_horaria() > 200:
+            raise ValueError
+        self._carga_horaria += disciplina.get_carga_horaria()
+        self._disciplina.append(disciplina)
 
     def lista_disciplinas(self) -> list:
         '''
         lista as disciplinas ministradas pelo professor
         '''
-        pass
+        return self._disciplina
